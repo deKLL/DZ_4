@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int month, year, day_of_week;
+    cout << "Enter month (1-12): ";
+    cin >> month;
+    cout << "Enter year: ";
+    cin >> year;
+    cout << "Enter day of the week (0-6) for the first day of the month: ";
+    cin >> day_of_week;
+
+    int days_in_month;
+    switch (month) {
+        case 2:
+            if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+                days_in_month = 29;
+            } else {
+                days_in_month = 28;
+            }
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            days_in_month = 30;
+            break;
+        default:
+            days_in_month = 31;
+            break;
+    }
+
+    cout << "   S   M   T   W   T   F   S" << endl;
+
+    // Output blank spaces for the first week
+    for (int i = 0; i < day_of_week; i++) {
+        cout << "    ";
+    }
+
+    // Output days of the month
+    for (int i = 1; i <= days_in_month; i++) {
+        if (i < 10) {
+            cout << "   " << i;
+        } else {
+            cout << "  " << i;
+        }
+
+        if ((i + day_of_week) % 7 == 0) {
+            cout << endl;
+        }
+    }
+
+    // Output the remaining blank spaces for the last week
+    if ((days_in_month + day_of_week) % 7 != 0) {
+        for (int i = 0; i < 7 - ((days_in_month + day_of_week) % 7); i++) {
+            cout << "   ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
