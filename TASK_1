@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int number;
+    int digit_count = 0;
+    int digit_sum = 0;
+    int zero_count = 0;
+
+    cout << "Enter a number: ";
+    cin >> number;
+
+    // Count the number of digits, their sum, and the number of zeros
+    int n = abs(number);
+    while (n > 0) {
+        int digit = n % 10;
+        digit_count++;
+        digit_sum += digit;
+        zero_count += (digit == 0);
+        n /= 10;
+    }
+
+    // Calculate the average of the digits
+    float digit_average = digit_sum / (float)digit_count;
+
+    // Output the results
+    cout << "Number of digits: " << digit_count << endl;
+    cout << "Sum of digits: " << digit_sum << endl;
+    cout << "Average of digits: " << digit_average << endl;
+    cout << "Number of zeros: " << zero_count << endl;
+
+    return 0;
+}
